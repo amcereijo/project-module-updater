@@ -1,0 +1,16 @@
+{
+  "name": "project-module-updater",
+  "version": "1.0.0",
+  "description": "Automatically update a module in several projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "module",
+    "update",
+    "projects"
+  ],
+  "author": "amcereijo <amcereijo@gmail.com>",
+  "license": "ISC"
+}
