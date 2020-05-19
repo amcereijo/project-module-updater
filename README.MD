@@ -7,6 +7,7 @@ It will examine folders with "package.json" file and update the ones which have 
 # Features
 Update one module in several projets under a diretory at once.
 ## Steps
+* find projects to update
 * checkout the destination branch ("dev" by default)
 * pull changes
 * make `npm install`
@@ -56,7 +57,6 @@ Example to run:
 
 # ToDos
 * Add custom commit message
-* Add list of projects to update in directory
 * Activate debug option to see commands output
 * Allow to pass version in the module
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)

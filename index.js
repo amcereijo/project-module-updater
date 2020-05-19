@@ -13,14 +13,17 @@ function resolvePathDir(dir) {
 function getDefaultDir() {
   return resolvePathDir(`${__dirname}/../`);
 }
+function processProjects(projects) {
+  return projects.split(',');
+}
 
 function programAction(moduleName) {
   const {
-    branch: defaultBranch, directory: parentDir, push,
+    branch: defaultBranch, directory: parentDir, push, applications: projects,
   } = program;
 
   main({
-    moduleName, defaultBranch, parentDir, push,
+    moduleName, defaultBranch, parentDir, push, projects,
   });
 }
 
@@ -29,6 +32,7 @@ program
   .option('-b --branch <branch>', 'branch where to add new commit with package update', DEFAULT_BRANCH)
   .option('-d, --directory <directory>', 'diectory to start find projects', resolvePathDir, getDefaultDir())
   .option('-p, --push', 'push the updated branch', DEFAULT_PUSH)
+  .option('-a, --applications <projects>', 'list of projects to update', processProjects, [])
   .arguments('<moduleName> dependecy to update')
   .action(programAction);
 
