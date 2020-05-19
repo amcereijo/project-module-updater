@@ -6,6 +6,20 @@ It will examine folders with "package.json" file and update the ones which have 
 
 # Features
 Update one module in several projets under a diretory at once.
+## Steps
+* checkout the destination branch ("dev" by default)
+* pull changes
+* make `npm install`
+* create a new branch for changes (name `fix/update-MODULE_NAME`)
+* checkout new branch
+* uninstall package to ensure install the las version(major, minor or udpate)
+* install package
+* run `git add`
+* run `git commit`
+* checkout destination branch
+* merge branch with changes
+* remove branch with changes
+* push destination branch (desactivated by default)
 
 # Limitations
 * Only one module per execution can be update.
@@ -47,3 +61,7 @@ Example to run:
 * Allow to pass version in the module
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
+* Add a max time for commands to end
+* Only add package/package-lock file in commit
+* Check if updated is needed
+
