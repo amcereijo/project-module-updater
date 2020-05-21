@@ -84,7 +84,7 @@ function buildGitCommit(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['commit', '-m', `"fix(package): update ${opts.moduleName} module"`],
+      args: ['commit', '-m', opts.commitMessage],
     },
     cwd: opts.cwd,
   };

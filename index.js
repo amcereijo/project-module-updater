@@ -19,11 +19,11 @@ function processProjects(projects) {
 
 function programAction(moduleName) {
   const {
-    branch: defaultBranch, directory: parentDir, push, applications: projects,
+    branch: defaultBranch, directory: parentDir, push, applications: projects, message,
   } = program;
 
   main({
-    moduleName, defaultBranch, parentDir, push, projects,
+    moduleName, defaultBranch, parentDir, push, projects, message,
   });
 }
 
@@ -33,6 +33,7 @@ program
   .option('-d, --directory <directory>', 'diectory to start find projects', resolvePathDir, getDefaultDir())
   .option('-p, --push', 'push the updated branch', DEFAULT_PUSH)
   .option('-a, --applications <projects>', 'list of projects to update', processProjects, [])
+  .option('-m, --message <message>', 'commit message')
   .arguments('<moduleName> dependecy to update')
   .action(programAction);
 

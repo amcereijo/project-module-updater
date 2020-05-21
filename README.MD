@@ -48,6 +48,7 @@ Options:
   -d, --directory <directory>  diectory to start find projects (default: "../current_directory")
   -p, --push                   push the updated branch (default: false)
   -a, --applications <package> list of projects to update (default: all projects in folder with the dependency)
+  -m, --message                commit message (default: "fix(package): update MODULE_NAME module")
   -h, --help                   display help for command
 ```
 
@@ -57,11 +58,11 @@ Example to run:
 ```
 
 # ToDos
-* Add custom commit message
 * Activate debug option to see commands output
 * Allow to pass version in the module
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
 * Check if updated is needed
+* Add custom branch name
 

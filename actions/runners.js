@@ -59,7 +59,12 @@ function runGitAddChanges(data) {
 }
 
 function runGitCommit(data) {
-  const gitCommitCommand = buildGitCommit({ cwd: data.name, moduleName: data.moduleName });
+  const commitMessage = data.message || `"fix(package): update ${data.moduleName} module"`;
+  const gitCommitCommand = buildGitCommit({
+    cwd: data.name,
+    moduleName: data.moduleName,
+    commitMessage,
+  });
   return runCommand(data, gitCommitCommand, 'runGitCommit');
 }
 
