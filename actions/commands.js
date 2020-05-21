@@ -74,7 +74,7 @@ function buildGitAddChanges(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['add', '.'],
+      args: ['add', 'package.json', 'package-lock.json'],
     },
     cwd: opts.cwd,
   };
