@@ -29,7 +29,7 @@ function programAction(moduleName) {
 
 program
   .version(pjson.version)
-  .option('-b --branch <branch>', 'branch where to add new commit with package update', DEFAULT_BRANCH)
+  .option('-b, --branch <branch>', 'branch where to add new commit with package update', DEFAULT_BRANCH)
   .option('-d, --directory <directory>', 'diectory to start find projects', resolvePathDir, getDefaultDir())
   .option('-p, --push', 'push the updated branch', DEFAULT_PUSH)
   .option('-a, --applications <projects>', 'list of projects to update', processProjects, [])
