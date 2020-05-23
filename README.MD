@@ -71,6 +71,42 @@ Example to run:
 > node index.js -b BRANCH --directory DIRECTORY PACKAGE_NAME
 ```
 
+## Expected process output
+### Info about params to run command:
+```
+> Start process with: {
+  moduleName: 'my-package-to-update',
+  defaultBranch: 'dev',
+  parentDir: '/Users/amcereijo/Documents/git',
+  push: false,
+  projects: [],
+  message: undefined
+}
+```
+### Process result
+It will show projects updated successfully and projects with errors
+```
+Process end with:
+ {
+  "errors": {
+    "checkout-orginal-branch": [],
+    "pull-dev": [],
+    "npm-install": [],
+    "create-branch": [],
+    "checkout-branch": [],
+    "uninstall-package": [],
+    "install-package": [],
+    "git-add": [],
+    "git-commit": [],
+    "checkout-dev": [],
+    "merge-branch": [],
+    "remove-branch": [],
+    "push-changes": []
+  },
+  "success": []
+}
+```
+
 # ToDos
 * Activate debug option to see commands output
 * Allow to pass version in the module
