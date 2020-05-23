@@ -1,7 +1,7 @@
 const { program } = require('commander');
 const path = require('path');
 const pjson = require('./package.json');
-const main = require('./main');
+const main = require('./src/main');
 
 const DEFAULT_BRANCH = 'dev';
 const DEFAULT_PUSH = false;
