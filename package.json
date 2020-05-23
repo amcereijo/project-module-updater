@@ -7,6 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
+  "bin": {
+    "@amcereijo/project-module-updater": "bin/project-module-updater",
+    "project-module-updater": "bin/project-module-updater"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "module",
     "update",

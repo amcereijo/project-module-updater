@@ -29,6 +29,20 @@ Update one module in several projets under a diretory at once.
 * The dependency will by installed in "dependencies" group
 
 # Usage
+## From npm
+```
+> npm i project-module-updater
+```
+To see command options
+```
+> project-module-updater --help
+```
+Example to run:
+```
+> project-module-updater -b BRANCH --directory DIRECTORY PACKAGE_NAME
+```
+
+## From github repo
 ```
 > git clone ....
 > npm i
