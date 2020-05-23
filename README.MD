@@ -86,7 +86,7 @@ Example to run:
 ### Process result
 It will show projects updated successfully and projects with errors
 ```
-Process end with:
+Process finished with:
  {
   "errors": {
     "checkout-orginal-branch": [],
