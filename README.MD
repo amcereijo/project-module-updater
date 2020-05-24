@@ -122,3 +122,10 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * Add a max time for commands to end
 * Check if updated is needed
 
+# Changelog
+* *v 1.0.2*:
+  * works fine as a CLI tool
+* *v 1.1.0*:
+  * --update-branch-name option
+  * run wih `DEBUG=pmu` to see all logs
+  * specify module version to update
