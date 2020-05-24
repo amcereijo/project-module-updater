@@ -61,10 +61,14 @@ function buildUninstallPackage(opts = {}) {
 }
 
 function buildInstallPackage(opts = {}) {
+  const moduleName = opts.moduleVersion
+    ? `${opts.moduleName}@${opts.moduleVersion}`
+    : opts.moduleName;
+
   return {
     command: {
       program: 'npm',
-      args: ['i', '-S', opts.moduleName],
+      args: ['i', '-S', moduleName],
     },
     cwd: opts.cwd,
   };

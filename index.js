@@ -17,6 +17,12 @@ function processProjects(projects) {
   return projects.split(',');
 }
 
+function splitModuleNameAndVersion(moduleName) {
+  const [onlyModuleName, moduleVersion] = moduleName.split('@');
+
+  return { onlyModuleName, moduleVersion };
+}
+
 function programAction(moduleName) {
   const {
     branch: defaultBranch,
@@ -27,8 +33,20 @@ function programAction(moduleName) {
     updateBranchName,
   } = program;
 
+  const {
+    onlyModuleName,
+    moduleVersion,
+  } = splitModuleNameAndVersion(moduleName);
+
   main({
-    moduleName, defaultBranch, parentDir, push, projects, message, updateBranchName,
+    moduleName: onlyModuleName,
+    moduleVersion,
+    defaultBranch,
+    parentDir,
+    push,
+    projects,
+    message,
+    updateBranchName,
   });
 }
 

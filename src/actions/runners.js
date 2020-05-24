@@ -58,7 +58,11 @@ function runUninstallPackage(data) {
 }
 
 function runInstallPackage(data) {
-  const installCommand = buildInstallPackage({ cwd: data.name, moduleName: data.moduleName });
+  const installCommand = buildInstallPackage({
+    cwd: data.name,
+    moduleName: data.moduleName,
+    moduleVersion: data.moduleVersion,
+  });
   return runCommand(data, installCommand, 'runInstallPackage');
 }
 

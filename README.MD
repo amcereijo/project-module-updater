@@ -4,14 +4,17 @@ The project try to help update one module in several projects.
 
 It will examine folders with "package.json" file and update the ones which have the module as a dependency.
 
+Sem version for the module can be specified.
+
 # Features
 Update one module in several projets under a diretory at once.
+
 ## Steps
 * find projects to update
-* checkout the destination branch ("dev" by default)
+* checkout the destination branch ("dev" by default or passed with option `-b`)
 * pull changes
 * make `npm install`
-* create a new branch for changes (name `fix/update-MODULE_NAME`)
+* create a new branch for changes (name `fix/update-MODULE_NAME` or value passed with option `--update-branch-name`)
 * checkout new branch
 * uninstall package to ensure install the las version(major, minor or udpate)
 * install package
@@ -24,8 +27,6 @@ Update one module in several projets under a diretory at once.
 
 # Limitations
 * Only one module per execution can be update.
-* Commit and merge commit message has a default value.
-* No allow to pass version in the module and it will install the last one
 * The dependency will by installed in "dependencies" group
 
 # Usage
@@ -39,7 +40,7 @@ To see command options
 ```
 Example to run:
 ```
-> project-module-updater -b BRANCH --directory DIRECTORY PACKAGE_NAME
+> project-module-updater -b BRANCH --directory DIRECTORY <moduleName>
 ```
 
 ## From github repo
@@ -69,7 +70,8 @@ Options:
 
 Example to run:
 ```
-> node index.js -b BRANCH --directory DIRECTORY PACKAGE_NAME
+> node index.js -b BRANCH --directory DIRECTORY <moduleName>
+> node index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
 ```
 
 ## Expected process output
@@ -111,11 +113,10 @@ Process finished with:
 ### Running in debug mode
 To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 ```
-> DEBUG=pmu project-module-updater -b BRANCH --directory DIRECTORY
+> DEBUG=pmu project-module-updater -b BRANCH --directory DIRECTORY <moduleName>
 ```
 
 # ToDos
-* Allow to pass version in the module
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
