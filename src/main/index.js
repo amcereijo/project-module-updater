@@ -1,4 +1,8 @@
 const Promise = require('bluebird');
+const debug = require('debug');
+const { debugName } = require('../constants');
+
+const debugLog = debug(debugName);
 
 const {
   actionNames,
@@ -37,11 +41,17 @@ async function runActions(data, pos = 0) {
  *
  *
  * @param {Object} data {
- * moduleName: String, defaultBranch: String, parentDir: String, push: Boolean, projects:[String]
+ *  moduleName: String,
+ *  defaultBranch: String,
+ *  parentDir: String,
+ *  push: Boolean,
+ *  projects:[String],
  * }
  */
 function main(data) {
   console.log('Start process with:', data);
+  debugLog('Running in debug mode...');
+
   const filterProjectInList = filterProjectInListBuilder(data.projects);
 
   Promise.resolve(data)

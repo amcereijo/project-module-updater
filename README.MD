@@ -107,8 +107,13 @@ Process finished with:
 }
 ```
 
+### Running in debug mode
+To show all logs, use "pmu" as value for "DEBUG" env var. Example:
+```
+> DEBUG=pmu project-module-updater -b BRANCH --directory DIRECTORY
+```
+
 # ToDos
-* Activate debug option to see commands output
 * Allow to pass version in the module
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)

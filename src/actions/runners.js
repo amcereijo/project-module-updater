@@ -1,4 +1,6 @@
+const debug = require('debug');
 const { runCommand } = require('./common');
+const { debugName } = require('../constants');
 
 const {
   buildCheckOut,
@@ -14,6 +16,8 @@ const {
   buildRemoveBranch,
   buildPush,
 } = require('./commands');
+
+const debugLog = debug(debugName);
 
 function runCheckoutOriginalBranch(data) {
   const checkoutCommand = buildCheckOut({ cwd: data.name, branch: data.defaultBranch });
@@ -84,7 +88,7 @@ function runPush(data) {
     return runCommand(data, pushCommand, 'runPush');
   }
 
-  console.log(`SKIP "runPush" ${data.name}`);
+  debugLog(`SKIP "runPush" ${data.name}`);
   return Promise.resolve(data);
 }
 
