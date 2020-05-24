@@ -19,11 +19,16 @@ function processProjects(projects) {
 
 function programAction(moduleName) {
   const {
-    branch: defaultBranch, directory: parentDir, push, applications: projects, message,
+    branch: defaultBranch,
+    directory: parentDir,
+    push,
+    applications: projects,
+    message,
+    updateBranchName,
   } = program;
 
   main({
-    moduleName, defaultBranch, parentDir, push, projects, message,
+    moduleName, defaultBranch, parentDir, push, projects, message, updateBranchName,
   });
 }
 
@@ -34,6 +39,7 @@ program
   .option('-p, --push', 'push the updated branch', DEFAULT_PUSH)
   .option('-a, --applications <projects>', 'list of projects to update', processProjects, [])
   .option('-m, --message <message>', 'commit message')
+  .option('--update-branch-name <updateBranchName>', 'name for the branch created to perform module update (default "fix/update-<moduleName>")')
   .arguments('<moduleName> dependecy to update')
   .action(programAction);
 

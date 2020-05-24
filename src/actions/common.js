@@ -17,8 +17,8 @@ function buildSpawnCommand({ command = {}, cwd }) {
   });
 }
 
-function buildBranchName(moduleName) {
-  return `fix/update-${moduleName}`;
+function buildBranchName(moduleName, branchName) {
+  return branchName || `fix/update-${moduleName}`;
 }
 function runCommand(data, command, commandName) {
   debugLog(data.name, commandName, command);

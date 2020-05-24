@@ -63,6 +63,7 @@ Options:
   -p, --push                   push the updated branch (default: false)
   -a, --applications <package> list of projects to update (default: all projects in folder with the dependency)
   -m, --message                commit message (default: "fix(package): update MODULE_NAME module")
+  --update-branch-name <updateBranchName>  name for the branch created to perform module update (default "fix/update-<moduleName>")
   -h, --help                   display help for command
 ```
 
@@ -119,5 +120,4 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
 * Check if updated is needed
-* Add custom branch name
 

@@ -35,7 +35,11 @@ function runNpmInstall(data) {
 }
 
 function runCreateBranch(data) {
-  const createBranchCommand = buildNewBranch({ cwd: data.name, moduleName: data.moduleName });
+  const createBranchCommand = buildNewBranch({
+    cwd: data.name,
+    moduleName: data.moduleName,
+    branchName: data.updateBranchName,
+  });
   return runCommand(data, createBranchCommand, 'runCreateBranch');
 }
 
@@ -43,6 +47,7 @@ function runCheckoutBranch(data) {
   const checkoutBranchCommand = buildCheckoutBranch({
     cwd: data.name,
     moduleName: data.moduleName,
+    branchName: data.updateBranchName,
   });
   return runCommand(data, checkoutBranchCommand, 'runCheckoutBranch');
 }
@@ -73,12 +78,20 @@ function runGitCommit(data) {
 }
 
 function runMergeBranch(data) {
-  const mergeBranchCommand = buildMergeBranch({ cwd: data.name, moduleName: data.moduleName });
+  const mergeBranchCommand = buildMergeBranch({
+    cwd: data.name,
+    moduleName: data.moduleName,
+    branchName: data.updateBranchName,
+  });
   return runCommand(data, mergeBranchCommand, 'runMergeBranch');
 }
 
 function runRemoveBranch(data) {
-  const removeBranchCommand = buildRemoveBranch({ cwd: data.name, moduleName: data.moduleName });
+  const removeBranchCommand = buildRemoveBranch({
+    cwd: data.name,
+    moduleName: data.moduleName,
+    branchName: data.updateBranchName,
+  });
   return runCommand(data, removeBranchCommand, 'runRemoveBranch');
 }
 

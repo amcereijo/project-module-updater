@@ -34,7 +34,7 @@ function buildNewBranch(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['branch', buildBranchName(opts.moduleName)],
+      args: ['branch', buildBranchName(opts.moduleName, opts.branchName)],
     },
     cwd: opts.cwd,
   };
@@ -44,7 +44,7 @@ function buildCheckoutBranch(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['checkout', buildBranchName(opts.moduleName)],
+      args: ['checkout', buildBranchName(opts.moduleName, opts.branchName)],
     },
     cwd: opts.cwd,
   };
@@ -94,7 +94,7 @@ function buildMergeBranch(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['merge', '--no-ff', buildBranchName(opts.moduleName)],
+      args: ['merge', '--no-ff', buildBranchName(opts.moduleName, opts.branchName)],
     },
     cwd: opts.cwd,
   };
@@ -104,7 +104,7 @@ function buildRemoveBranch(opts = {}) {
   return {
     command: {
       program: 'git',
-      args: ['branch', '-D', buildBranchName(opts.moduleName)],
+      args: ['branch', '-D', buildBranchName(opts.moduleName, opts.branchName)],
     },
     cwd: opts.cwd,
   };
