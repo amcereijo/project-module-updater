@@ -121,6 +121,7 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
 * Check if updated is needed
+* Select projects to update for the list with the package included
 
 # Changelog
 * *v 1.0.2*:
