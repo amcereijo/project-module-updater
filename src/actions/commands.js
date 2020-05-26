@@ -124,6 +124,18 @@ function buildPush(opts = {}) {
   };
 }
 
+function buildGetVersions(opts = {}) {
+  return {
+    command: {
+      program: 'npm',
+      args: ['show', opts.moduleName, 'versions'],
+    },
+    cwd: opts.cwd,
+    stdio: 'pipe',
+    stdioParser: (_data = []) => JSON.parse(String(_data).replace(/'/g, '"')),
+  };
+}
+
 
 module.exports = {
   buildCheckOut,
@@ -138,4 +150,5 @@ module.exports = {
   buildMergeBranch,
   buildRemoveBranch,
   buildPush,
+  buildGetVersions,
 };

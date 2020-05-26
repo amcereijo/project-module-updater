@@ -15,6 +15,7 @@ const {
   buildMergeBranch,
   buildRemoveBranch,
   buildPush,
+  buildGetVersions,
 } = require('./commands');
 
 const debugLog = debug(debugName);
@@ -109,6 +110,14 @@ function runPush(data) {
   return Promise.resolve(data);
 }
 
+function runGetModuleVersions(data) {
+  const getVersionsCommand = buildGetVersions({
+    cwd: data.name,
+    moduleName: data.moduleName,
+  });
+  return runCommand(data, getVersionsCommand, 'runGetModuleVersions');
+}
+
 module.exports = {
   runCheckoutOriginalBranch,
   runPull,
@@ -122,6 +131,8 @@ module.exports = {
   runMergeBranch,
   runRemoveBranch,
   runPush,
+
+  runGetModuleVersions,
 
   actions: [
     runCheckoutOriginalBranch,
