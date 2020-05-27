@@ -2,7 +2,7 @@
 ## Motivation
 The project try to help update one module in several projects.
 
-It will examine folders with "package.json" file and update the ones which have the module as a dependency.
+It will examine folders with "package.json" file and update the ones which have the module as a dependency but not those with already has the version to update.
 
 Sem version for the module can be specified.
 
@@ -10,7 +10,7 @@ Sem version for the module can be specified.
 Update one module in several projets under a diretory at once.
 
 ## Steps
-* find projects to update
+* find projects to update(projects with the package include but in the same version)
 * checkout the destination branch ("dev" by default or passed with option `-b`)
 * pull changes
 * make `npm install`
@@ -120,7 +120,6 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
-* Check if updated is needed
 * Select projects to update for the list with the package included
 
 # Changelog
@@ -130,3 +129,5 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
   * --update-branch-name option
   * run wih `DEBUG=pmu` to see all logs
   * specify module version to update
+* *v 1.2.0*:
+  * check if updated is needed. Do no perform the update if the project already has the same module version in package.json
