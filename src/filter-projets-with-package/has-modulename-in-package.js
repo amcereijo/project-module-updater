@@ -1,8 +1,25 @@
 const fs = require('fs').promises;
+const Promise = require('bluebird');
+
+function hasModuleInPackage(content, data) {
+  return !!(String(content).match(data.moduleName));
+}
+
+function hasNotSameModuleVersion(content, data) {
+  const regx = `${data.moduleName}\\": \\"\\^?${data.moduleVersion}`;
+  return !(String(content).match(regx));
+}
+
+function isNotTheModuleProject(content, data) {
+  const regx = `"name": "${data.moduleName}`;
+  return !(String(content).match(regx));
+}
 
 function hasModuleNameInPackage(data) {
-  return fs.readFile(`${data.name}/package.json`)
-    .then((fileContent) => !!(String(fileContent).match(`"${data.moduleName}":`)));
+  return Promise.resolve(fs.readFile(`${data.name}/package.json`))
+    .then((fileContent) => hasModuleInPackage(fileContent, data)
+      && isNotTheModuleProject(fileContent, data)
+      && hasNotSameModuleVersion(fileContent, data));
 }
 
 module.exports = hasModuleNameInPackage;

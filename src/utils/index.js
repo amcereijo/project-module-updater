@@ -4,6 +4,7 @@ exports.printEnd = function printEnd(data) {
 };
 
 exports.printProjectsToUpdate = function printProjectsToUpdate(data) {
-  console.log('Projects to update:');
+  console.log(`Projects to update (${data.length}):`);
   data.forEach((el) => console.log(`* ${el.name}`));
+  console.log('\n');
 };

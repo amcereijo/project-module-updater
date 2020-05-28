@@ -13,6 +13,7 @@ const filterProjectsWithPackage = require('../filter-projets-with-package');
 const filterProjectInListBuilder = require('../filter-projects-in-list');
 const findNodeProjects = require('../find-node-projects');
 const { printEnd, printProjectsToUpdate } = require('../utils');
+const defineVersionToUpdate = require('../define-version-to-update');
 
 const {
   removeErrors,
@@ -42,19 +43,24 @@ async function runActions(data, pos = 0) {
  *
  * @param {Object} data {
  *  moduleName: String,
+ *  moduleVersion: String
  *  defaultBranch: String,
  *  parentDir: String,
  *  push: Boolean,
  *  projects:[String],
+ *  message: String
+ *  updateBranchName: String
  * }
  */
 function main(data) {
-  console.log('Start process with:', data);
+  console.log('Start process with:', data, '\n');
   debugLog('Running in debug mode...');
 
   const filterProjectInList = filterProjectInListBuilder(data.projects);
 
   Promise.resolve(data)
+    .then(defineVersionToUpdate)
+    .tap((_data) => console.log('Process completed with', _data, '\n'))
 
     .then(findNodeProjects)
     .then(filterProjectsWithPackage)
