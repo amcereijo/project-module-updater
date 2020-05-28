@@ -10,9 +10,15 @@ function hasNotSameModuleVersion(content, data) {
   return !(String(content).match(regx));
 }
 
+function isNotTheModuleProject(content, data) {
+  const regx = `"name": "${data.moduleName}`;
+  return !(String(content).match(regx));
+}
+
 function hasModuleNameInPackage(data) {
   return Promise.resolve(fs.readFile(`${data.name}/package.json`))
     .then((fileContent) => hasModuleInPackage(fileContent, data)
+      && isNotTheModuleProject(fileContent, data)
       && hasNotSameModuleVersion(fileContent, data));
 }
 
