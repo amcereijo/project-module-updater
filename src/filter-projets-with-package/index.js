@@ -3,7 +3,6 @@ const Promise = require('bluebird');
 const hasModuleNameInPackage = require('./has-modulename-in-package');
 
 function filterProjectsWithPackage(data) {
-  // change to find package with version
   return Promise.resolve(data)
     .map((_data) => Promise.props({
       ..._data,
