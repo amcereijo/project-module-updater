@@ -14,6 +14,7 @@ const filterProjectInListBuilder = require('../filter-projects-in-list');
 const findNodeProjects = require('../find-node-projects');
 const { printEnd, printProjectsToUpdate } = require('../utils');
 const defineVersionToUpdate = require('../define-version-to-update');
+const filterByUserChoise = require('../filter-by-user-choice');
 
 const {
   removeErrors,
@@ -60,12 +61,14 @@ function main(data) {
 
   Promise.resolve(data)
     .then(defineVersionToUpdate)
-    .tap((_data) => console.log('Process completed with', _data, '\n'))
+    .tap((_data) => console.log('Run process with', _data, '\n'))
 
     .then(findNodeProjects)
     .then(filterProjectsWithPackage)
     .then(filterProjectInList)
 
+    .tap(printProjectsToUpdate)
+    .then(filterByUserChoise)
     .tap(printProjectsToUpdate)
 
     .then(runActions)
