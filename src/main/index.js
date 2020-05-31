@@ -1,5 +1,6 @@
 const Promise = require('bluebird');
 const debug = require('debug');
+const kleur = require('kleur');
 const { debugName } = require('../constants');
 
 const debugLog = debug(debugName);
@@ -12,13 +13,21 @@ const errorsHandlerBuilder = require('../errors-handler');
 const filterProjectsWithPackage = require('../filter-projets-with-package');
 const filterProjectInListBuilder = require('../filter-projects-in-list');
 const findNodeProjects = require('../find-node-projects');
-const { printEnd, printProjectsToUpdate } = require('../utils');
+const {
+  printStart,
+  printEnd,
+  printProjectsToUpdate,
+  bypassFunction,
+} = require('../utils');
 const defineVersionToUpdate = require('../define-version-to-update');
+const filterByUserChoice = require('../filter-by-user-choice');
 
 const {
   removeErrors,
   getErrors,
 } = errorsHandlerBuilder();
+
+let interval;
 
 async function runActions(data, pos = 0) {
   const action = actions.shift();
@@ -37,6 +46,17 @@ async function runActions(data, pos = 0) {
   return newData;
 }
 
+function startInterval() {
+  process.stdout.write(kleur.green('Running process: '));
+  interval = setInterval(() => process.stdout.write('*'), 1000);
+}
+function stopInterval() {
+  clearInterval(interval);
+}
+
+function maybeRunFilterByUserChoice(selectAll) {
+  return selectAll ? bypassFunction : filterByUserChoice;
+}
 
 /**
  *
@@ -53,22 +73,28 @@ async function runActions(data, pos = 0) {
  * }
  */
 function main(data) {
-  console.log('Start process with:', data, '\n');
+  console.log(kleur.green('Input data for process:'), data, '\n');
   debugLog('Running in debug mode...');
+
+  const selectAll = !!data.projects.length;
 
   const filterProjectInList = filterProjectInListBuilder(data.projects);
 
   Promise.resolve(data)
     .then(defineVersionToUpdate)
-    .tap((_data) => console.log('Process completed with', _data, '\n'))
+    .tap(printStart)
 
     .then(findNodeProjects)
+
     .then(filterProjectsWithPackage)
     .then(filterProjectInList)
+    .then(maybeRunFilterByUserChoice(selectAll))
 
     .tap(printProjectsToUpdate)
 
+    .tap(startInterval)
     .then(runActions)
+    .tap(stopInterval)
 
     .then((_data) => ({ errors: getErrors(), success: _data }))
     .tap(printEnd);

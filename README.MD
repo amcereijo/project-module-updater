@@ -1,16 +1,23 @@
 # project-module-updater
 ## Motivation
-The project try to help update one module in several projects.
-
-It will examine folders with "package.json" file and update the ones which have the module as a dependency but not those with already has the version to update.
-
-Sem version for the module can be specified.
+The project is a CLI tool to help update one module in several projects.
 
 # Features
 Update one module in several projets under a diretory at once.
 
+The tool allows:
+  * indicate the initial branch for the project that will be updated.
+  * indicate the folder in which perform search for projects to update.
+  * indicate the list of project(folder names inside the folder to search).that should be updated. If not indicated, the user will be prompted to seleced the projects to update.
+  * indicate the commit message for the commit updating the package.
+  * indicate the name for the branch that will be created to perform the package update.
+  * indicate if perform the push of the original branch when all changed are added (false by default).
+
+Sem version for the module can be specified when pass the name for the pacakge to update. If not passed, the las version in npm registry will be used.
+
 ## Steps
 * find projects to update(projects with the package include but in the same version)
+* prompt user to select the projects to update (this step is skipped if the `-a` option is passed with the projects to update)
 * checkout the destination branch ("dev" by default or passed with option `-b`)
 * pull changes
 * make `npm install`
@@ -77,37 +84,48 @@ Example to run:
 ## Expected process output
 ### Info about params to run command:
 ```
-> Start process with: {
-  moduleName: 'my-package-to-update',
-  defaultBranch: 'dev',
-  parentDir: '/Users/amcereijo/Documents/git',
+Input data for process: {
+  moduleName: 'chai',
+  moduleVersion: undefined,
+  defaultBranch: 'master',
+  parentDir: '/Users/User/folder/',
   push: false,
   projects: [],
-  message: undefined
+  message: undefined,
+  updateBranchName: undefined
+}
+
+
+Run process with: {
+  moduleName: 'chai',
+  moduleVersion: '4.2.0',
+  defaultBranch: 'master',
+  parentDir: '/Users/User/folder/',
+  push: false,
+  projects: [],
+  message: undefined,
+  updateBranchName: undefined
 }
 ```
 ### Process result
 It will show projects updated successfully and projects with errors
 ```
 Process finished with:
- {
-  "errors": {
-    "checkout-orginal-branch": [],
-    "pull-dev": [],
-    "npm-install": [],
-    "create-branch": [],
-    "checkout-branch": [],
-    "uninstall-package": [],
-    "install-package": [],
-    "git-add": [],
-    "git-commit": [],
-    "checkout-dev": [],
-    "merge-branch": [],
-    "remove-branch": [],
-    "push-changes": []
-  },
-  "success": []
-}
+Errors:
+  checkout-orginal-branch: []
+  pull-dev: []
+  npm-install: []
+  create-branch: []
+  checkout-branch: []
+  uninstall-package: []
+  install-package: []
+  git-add: []
+  git-commit: []
+  checkout-dev: []
+  merge-branch: []
+  remove-branch: []
+  push-changes: []
+Sucess: []
 ```
 
 ### Running in debug mode
@@ -120,7 +138,6 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
-* Select projects to update for the list with the package included
 
 # Changelog
 * *v 1.0.2*:
@@ -131,3 +148,6 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
   * specify module version to update
 * *v 1.2.0*:
   * check if updated is needed. Do no perform the update if the project already has the same module version in package.json
+* *v 1.3.0*:
+  * improve user messages
+  * if not applications passed with `-a` option, the user will be prompted to select the projects to update
