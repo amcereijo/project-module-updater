@@ -1,15 +1,13 @@
 const prompts = require('prompts');
+const kleur = require('kleur');
 
-async function checkIfWantupdateAll() {
-  const response = await prompts({
-    type: 'confirm',
-    name: 'updateAll',
-    message: 'Update All?',
-    initial: true,
-  });
-
-  return response.updateAll;
-}
+const instructions = kleur.yellow(`
+  Instructions:
+    ${kleur.cyan().bold('a')}: Toggle ALL
+    ${kleur.cyan().bold('↑/↓')}: Highlight option
+    ${kleur.cyan().bold('←/→/[space]')}: Toggle selection
+    ${kleur.cyan().bold('enter/return')}: Complete answer
+`);
 
 function buildChoices(data) {
   return data.map((element) => ({ title: element.name, value: [element.name] }));
@@ -28,29 +26,27 @@ function buildChoices(data) {
  * }]
  */
 async function filterByUserChoise(data) {
-  const updateAll = await checkIfWantupdateAll();
+  const choices = buildChoices(data);
 
-  if (!updateAll) {
-    const choices = buildChoices(data);
+  const response = await prompts({
+    type: 'multiselect',
+    name: 'projectsToUpdate',
+    instructions,
+    message: 'Select projects to update',
+    onRender() {
+      this.msg = kleur.green(this.msg);
+    },
+    choices,
+    hint: '- Space to select. Return to submit',
+    format: (values) => (values || []).flat(),
+  });
 
-    const response = await prompts({
-      type: 'multiselect',
-      name: 'projectsToUpdate',
-      message: 'Select projects to update',
-      choices,
-      hint: '- Space to select. Return to submit',
-      format: (values) => (values || []).flat(),
-    });
-
-    return data
-      .map((element) => ({
-        ...element,
-        continue: (response.projectsToUpdate || []).includes(element.name),
-      }))
-      .filter((_data) => _data.continue);
-  }
-
-  return data;
+  return data
+    .map((element) => ({
+      ...element,
+      continue: (response.projectsToUpdate || []).includes(element.name),
+    }))
+    .filter((_data) => _data.continue);
 }
 
 module.exports = filterByUserChoise;
