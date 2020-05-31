@@ -20,7 +20,7 @@ const {
   bypassFunction,
 } = require('../utils');
 const defineVersionToUpdate = require('../define-version-to-update');
-const filterByUserChoise = require('../filter-by-user-choice');
+const filterByUserChoice = require('../filter-by-user-choice');
 
 const {
   removeErrors,
@@ -55,7 +55,7 @@ function stopInterval() {
 }
 
 function maybeRunFilterByUserChoice(selectAll) {
-  return selectAll ? bypassFunction : filterByUserChoise;
+  return selectAll ? bypassFunction : filterByUserChoice;
 }
 
 /**

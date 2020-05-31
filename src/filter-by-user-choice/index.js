@@ -25,7 +25,7 @@ function buildChoices(data) {
     continue: true
  * }]
  */
-async function filterByUserChoise(data) {
+async function filterByUserChoice(data) {
   const choices = buildChoices(data);
   const response = await prompts({
     type: 'multiselect',
@@ -48,4 +48,4 @@ async function filterByUserChoise(data) {
     .filter((_data) => _data.continue);
 }
 
-module.exports = filterByUserChoise;
+module.exports = filterByUserChoice;
