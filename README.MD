@@ -150,4 +150,4 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
   * check if updated is needed. Do no perform the update if the project already has the same module version in package.json
 * *v 1.3.0*:
   * improve user messages
-  * if not applications to update are indicated, the user will be prompt to select the projects to update
+  * if not applications passed with `-a` option, the user will be prompted to select the projects to update
