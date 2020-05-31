@@ -22,6 +22,8 @@ const {
   getErrors,
 } = errorsHandlerBuilder();
 
+let interval;
+
 async function runActions(data, pos = 0) {
   const action = actions.shift();
   let actualPos = pos;
@@ -39,6 +41,13 @@ async function runActions(data, pos = 0) {
   return newData;
 }
 
+function startInterval() {
+  process.stdout.write(kleur.green('Running process: '));
+  interval = setInterval(() => process.stdout.write('*'), 1000);
+}
+function stopInterval() {
+  clearInterval(interval);
+}
 
 /**
  *
@@ -72,7 +81,9 @@ function main(data) {
 
     .tap(printProjectsToUpdate)
 
+    .tap(startInterval)
     .then(runActions)
+    .tap(stopInterval)
 
     .then((_data) => ({ errors: getErrors(), success: _data }))
     .tap(printEnd);
