@@ -32,3 +32,5 @@ exports.printProjectsToUpdate = function printProjectsToUpdate(data) {
   data.forEach((el) => console.log(`* ${el.name}`));
   console.log('\n');
 };
+
+exports.bypassFunction = (args) => args;

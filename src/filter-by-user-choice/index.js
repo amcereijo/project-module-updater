@@ -27,7 +27,6 @@ function buildChoices(data) {
  */
 async function filterByUserChoise(data) {
   const choices = buildChoices(data);
-
   const response = await prompts({
     type: 'multiselect',
     name: 'projectsToUpdate',

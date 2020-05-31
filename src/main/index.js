@@ -13,7 +13,12 @@ const errorsHandlerBuilder = require('../errors-handler');
 const filterProjectsWithPackage = require('../filter-projets-with-package');
 const filterProjectInListBuilder = require('../filter-projects-in-list');
 const findNodeProjects = require('../find-node-projects');
-const { printStart, printEnd, printProjectsToUpdate } = require('../utils');
+const {
+  printStart,
+  printEnd,
+  printProjectsToUpdate,
+  bypassFunction,
+} = require('../utils');
 const defineVersionToUpdate = require('../define-version-to-update');
 const filterByUserChoise = require('../filter-by-user-choice');
 
@@ -49,6 +54,10 @@ function stopInterval() {
   clearInterval(interval);
 }
 
+function maybeRunFilterByUserChoice(selectAll) {
+  return selectAll ? bypassFunction : filterByUserChoise;
+}
+
 /**
  *
  *
@@ -67,6 +76,8 @@ function main(data) {
   console.log(kleur.green('Input data for process:'), data, '\n');
   debugLog('Running in debug mode...');
 
+  const selectAll = !!data.projects.length;
+
   const filterProjectInList = filterProjectInListBuilder(data.projects);
 
   Promise.resolve(data)
@@ -77,7 +88,7 @@ function main(data) {
 
     .then(filterProjectsWithPackage)
     .then(filterProjectInList)
-    .then(filterByUserChoise)
+    .then(maybeRunFilterByUserChoice(selectAll))
 
     .tap(printProjectsToUpdate)
 
