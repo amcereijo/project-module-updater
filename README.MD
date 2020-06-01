@@ -67,7 +67,7 @@ Usage: index [options] <moduleName>
 Options:
   -V, --version                output the version number
   -b, --branch <branch>        branch where to add new commit with package update (default: "dev")
-  -d, --directory <directory>  diectory to start find projects (default: "../current_directory")
+  -d, --directory <directory>  directory to start find projects (default: "../current_directory")
   -p, --push                   push the updated branch (default: false)
   -a, --applications <package> list of projects to update (default: all projects in folder with the dependency)
   -m, --message                commit message (default: "fix(package): update MODULE_NAME module")
