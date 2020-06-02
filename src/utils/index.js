@@ -17,7 +17,7 @@ function printErrors(errors) {
 }
 
 function printSuccess(success) {
-  console.log(`Sucess: ${printEmpty(success)}`);
+  console.log(`Success: ${printEmpty(success)}`);
   success.forEach((project) => console.log(`  * ${kleur.green(project.name)}`));
 }
 
