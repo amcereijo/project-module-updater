@@ -125,7 +125,7 @@ Errors:
   merge-branch: []
   remove-branch: []
   push-changes: []
-Sucess: []
+Success: []
 ```
 
 ### Running in debug mode
@@ -151,3 +151,5 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 * *v 1.3.0*:
   * improve user messages
   * if not applications passed with `-a` option, the user will be prompted to select the projects to update
+* *v 1.3.1*:
+  * fix do not wait for client input if there is no project to select
