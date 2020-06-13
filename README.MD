@@ -45,9 +45,17 @@ To see command options
 ```
 > project-module-updater --help
 ```
+or
+```
+> pmu -h
+```
 Example to run:
 ```
 > project-module-updater -b BRANCH --directory DIRECTORY <moduleName>
+```
+or
+```
+> pmu -b BRANCH --directory DIRECTORY <moduleName>
 ```
 
 ## From github repo
@@ -78,6 +86,8 @@ Options:
 Example to run:
 ```
 > node index.js -b BRANCH --directory DIRECTORY <moduleName>
+```
+```
 > node index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
 ```
 
@@ -153,3 +163,5 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
   * if not applications passed with `-a` option, the user will be prompted to select the projects to update
 * *v 1.3.1*:
   * fix do not wait for client input if there is no project to select
+* *v 1.4.0*:
+  * add "pmu" as a command alias for "project-module-updater"
