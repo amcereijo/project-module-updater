@@ -4,10 +4,8 @@ import pjson from './package.json';
 import main from './src/main/index';
 import Data from './src/data';
 
-
 const DEFAULT_BRANCH = 'dev';
 const DEFAULT_PUSH = false;
-
 
 function resolvePathDir(dir:string) {
   return path.resolve(dir);

@@ -1,11 +1,11 @@
 import Promise from 'bluebird';
-import Data from '../data';
+import Data, { ErrorHanlder } from '../data';
 
 /**
  *
  * @returns { removeErrors(errorName: String), getErrors() }
  */
-export default function buildErrorsHandler() {
+export default function buildErrorsHandler(): ErrorHanlder {
   const errors = new Map();
 
   function removeErrors(name: string) {
@@ -18,7 +18,7 @@ export default function buildErrorsHandler() {
     };
   }
 
-  function getErrors(): Object {
+  function getErrors(): Map<string,[string]> {
     return errors;
   }
 

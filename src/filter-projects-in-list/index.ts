@@ -6,7 +6,7 @@ function getName(completeName: string) {
   return path.parse(completeName).name;
 }
 
-function isProjectInList(list:[string?], folderName: string = '') {
+function isProjectInList(list:[string?], folderName = '') {
   return !list.length || list.includes(getName(folderName));
 }
 

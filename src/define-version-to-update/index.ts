@@ -1,5 +1,5 @@
-import Data from "../data";
 import Promise from 'bluebird';
+import Data from '../data';
 import {
   runGetModuleVersions,
 } from '../actions/runners';

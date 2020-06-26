@@ -1,6 +1,6 @@
-import Data from "../data";
 import prompts from 'prompts';
 import kleur from 'kleur';
+import Data from '../data';
 
 const instructions = kleur.yellow(`
   Instructions:
@@ -14,7 +14,6 @@ function buildChoices(data: [Data]) {
   return data.map((element) => ({ title: element.name, value: [element.name] }));
 }
 
-
 /**
  *
  * @param {Array} data [{
@@ -27,13 +26,12 @@ function buildChoices(data: [Data]) {
     continue: true
  * }]
  */
-export default async function filterByUserChoice(data: [Data]) : Promise<[Data]>{
+export default async function filterByUserChoice(data: [Data]) : Promise<[Data]> {
   const choices = buildChoices(data);
 
   if (!choices.length) {
     return data;
   }
-
 
   const response = await prompts({
     type: 'multiselect',

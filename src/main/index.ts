@@ -3,9 +3,7 @@ import debug from 'debug';
 import kleur from 'kleur';
 
 import { debugName } from '../constants';
-import Data, {DataResult} from '../data';
-
-const debugLog = debug(debugName);
+import Data, { DataResult } from '../data';
 
 import {
   actionNames,
@@ -23,6 +21,8 @@ import {
 } from '../utils';
 import defineVersionToUpdate from '../define-version-to-update';
 import filterByUserChoice from '../filter-by-user-choice';
+
+const debugLog = debug(debugName);
 
 const {
   removeErrors,
@@ -75,14 +75,13 @@ function maybeRunFilterByUserChoice(selectAll: boolean) {
  *  updateBranchName: String
  * }
  */
-async function main(data: Data) {
+function main(data: Data): void {
   console.log(kleur.green('Input data for process:'), data, '\n');
   debugLog('Running in debug mode...');
 
   const selectAll = !!data.projects.length;
 
   const filterProjectInList = filterProjectInListBuilder(data.projects);
-
 
   Promise.resolve(data)
     .then(defineVersionToUpdate)
