@@ -1,5 +1,6 @@
-const prompts = require('prompts');
-const kleur = require('kleur');
+import Data from "../data";
+import prompts from 'prompts';
+import kleur from 'kleur';
 
 const instructions = kleur.yellow(`
   Instructions:
@@ -9,9 +10,10 @@ const instructions = kleur.yellow(`
     ${kleur.cyan().bold('enter/return')}: Complete answer
 `);
 
-function buildChoices(data) {
+function buildChoices(data: [Data]) {
   return data.map((element) => ({ title: element.name, value: [element.name] }));
 }
+
 
 /**
  *
@@ -25,12 +27,13 @@ function buildChoices(data) {
     continue: true
  * }]
  */
-async function filterByUserChoice(data) {
+export default async function filterByUserChoice(data: [Data]) : Promise<[Data]>{
   const choices = buildChoices(data);
 
   if (!choices.length) {
     return data;
   }
+
 
   const response = await prompts({
     type: 'multiselect',
@@ -42,15 +45,15 @@ async function filterByUserChoice(data) {
     },
     choices,
     hint: '- Space to select. Return to submit',
-    format: (values) => (values || []).flat(),
+    format: (values: [string]) => (values || []).flat(),
   });
 
-  return data
+  const filteredData = data
     .map((element) => ({
       ...element,
       continue: (response.projectsToUpdate || []).includes(element.name),
     }))
     .filter((_data) => _data.continue);
-}
 
-module.exports = filterByUserChoice;
+  return <Promise<[Data]>>Promise.resolve(filteredData);
+}

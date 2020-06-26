@@ -1,11 +1,13 @@
-const { spawn } = require('child_process');
-const debug = require('debug');
-const { debugName } = require('../constants');
+import { spawn, ChildProcess } from 'child_process';
+import debug from 'debug';
+import { debugName } from '../constants';
+import Data, { Command, ParserFunction } from '../data';
 
 const debugLog = debug(debugName);
 
 function defaultStdioParser(/* _data */) {
   // do nothing;
+  return '';
 }
 
 /**
@@ -16,7 +18,7 @@ function defaultStdioParser(/* _data */) {
  *  stdio: 'ignore|pipe|inherit'
  * }
  */
-function buildSpawnCommand({ command = {}, cwd, stdio = 'ignore' }) {
+export function buildSpawnCommand({ command, cwd, stdio = 'ignore' }: Command) : ChildProcess {
   const { program, args = [] } = command;
 
   return spawn(program, args, {
@@ -25,15 +27,15 @@ function buildSpawnCommand({ command = {}, cwd, stdio = 'ignore' }) {
   });
 }
 
-function buildBranchName(moduleName, branchName) {
+export function buildBranchName(moduleName: string, branchName:string) {
   return branchName || `fix/update-${moduleName}`;
 }
-function runCommand(data, command, commandName) {
+export function runCommand(data: Data, command: Command, commandName: string): Promise<Data> {
   debugLog(data.name, commandName, command);
 
   return new Promise((resolve) => {
     const spawnCommand = buildSpawnCommand(command);
-    let commandResult;
+    let commandResult: string = '';
 
     spawnCommand.on('exit', (code, signal) => {
       debugLog(`process ${commandName} for ${data.name} exited with ${code} and ·${signal}. Resolve with`, { continue: code === 0 });
@@ -41,7 +43,7 @@ function runCommand(data, command, commandName) {
     });
 
     if (spawnCommand.stdout) {
-      const parser = command.stdioParser || defaultStdioParser;
+      const parser: ParserFunction = command.stdioParser || defaultStdioParser;
 
       spawnCommand.stdout.on('data', (_data) => {
         commandResult = parser(_data);
@@ -54,9 +56,3 @@ function runCommand(data, command, commandName) {
     });
   });
 }
-
-module.exports = {
-  buildBranchName,
-  buildSpawnCommand,
-  runCommand,
-};

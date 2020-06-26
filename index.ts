@@ -1,29 +1,31 @@
-const { program } = require('commander');
-const path = require('path');
-const pjson = require('./package.json');
-const main = require('./src/main');
+import { program } from 'commander';
+import path from 'path';
+import pjson from './package.json';
+import main from './src/main/index';
+import Data from './src/data';
+
 
 const DEFAULT_BRANCH = 'dev';
 const DEFAULT_PUSH = false;
 
 
-function resolvePathDir(dir) {
+function resolvePathDir(dir:string) {
   return path.resolve(dir);
 }
 function getDefaultDir() {
   return resolvePathDir(`${__dirname}/../`);
 }
-function processProjects(projects) {
+function processProjects(projects:string) {
   return projects.split(',');
 }
 
-function splitModuleNameAndVersion(moduleName) {
+function splitModuleNameAndVersion(moduleName:string) {
   const [onlyModuleName, moduleVersion] = moduleName.split('@');
 
   return { onlyModuleName, moduleVersion };
 }
 
-function programAction(moduleName) {
+function programAction(moduleName:string) {
   const {
     branch: defaultBranch,
     directory: parentDir,
@@ -37,8 +39,7 @@ function programAction(moduleName) {
     onlyModuleName,
     moduleVersion,
   } = splitModuleNameAndVersion(moduleName);
-
-  main({
+  const data: Data = {
     moduleName: onlyModuleName,
     moduleVersion,
     defaultBranch,
@@ -47,7 +48,9 @@ function programAction(moduleName) {
     projects,
     message,
     updateBranchName,
-  });
+  };
+
+  main(data);
 }
 
 program
