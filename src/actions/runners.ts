@@ -3,7 +3,7 @@ import { runCommand } from './common';
 import { debugName } from '../constants';
 import Data from '../data';
 
-const {
+import {
   buildCheckOut,
   buildPull,
   buildNpmInstall,
@@ -17,7 +17,7 @@ const {
   buildRemoveBranch,
   buildPush,
   buildGetVersions,
-} = require('./commands');
+} from './commands';
 
 const debugLog = debug(debugName);
 

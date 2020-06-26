@@ -1,3 +1,3 @@
 const debugName = 'pmu';
 
-export {debugName};
+export { debugName };

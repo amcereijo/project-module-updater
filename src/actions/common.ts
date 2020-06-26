@@ -27,7 +27,7 @@ export function buildSpawnCommand({ command, cwd, stdio = 'ignore' }: Command) :
   });
 }
 
-export function buildBranchName(moduleName: string, branchName:string) {
+export function buildBranchName(moduleName: string, branchName:string): string {
   return branchName || `fix/update-${moduleName}`;
 }
 export function runCommand(data: Data, command: Command, commandName: string): Promise<Data> {
@@ -35,7 +35,7 @@ export function runCommand(data: Data, command: Command, commandName: string): P
 
   return new Promise((resolve) => {
     const spawnCommand = buildSpawnCommand(command);
-    let commandResult: string = '';
+    let commandResult = '';
 
     spawnCommand.on('exit', (code, signal) => {
       debugLog(`process ${commandName} for ${data.name} exited with ${code} and ·${signal}. Resolve with`, { continue: code === 0 });

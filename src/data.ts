@@ -1,3 +1,5 @@
+import { StdioOptions } from "child_process";
+import Promise from 'bluebird';
 
 export default interface Data {
   moduleName: string,
@@ -16,19 +18,45 @@ export default interface Data {
 
 export interface ParserFunction {
   (data:Data): string
-};
+}
 
 export interface Command {
   command: {
-    program: 'git',
-    args: [string],
+    program: string,
+    args: Array<string>,
   },
   cwd?: string,
-  stdio?: "ignore",
-  stdioParser?: ParserFunction,
-};
+  stdio?: StdioOptions,
+  stdioParser?: ParserFunction
+}
+
+export interface CommandBuilder {
+  cwd?: string,
+  branch?: string
+  moduleName?: string,
+  branchName?: string,
+  moduleVersion?: string,
+  commitMessage?: string
+}
 
 export interface DataResult {
   success: [Data],
   errors: Map<string, [string]>,
+}
+
+export interface RemoveErrorInterface {
+  (list: [Data]): Promise<[Data]>
+}
+
+export interface BuildRemoveErrorInterface {
+  (name: string): RemoveErrorInterface
+}
+
+export interface GetErrorInterface {
+  (): Map<string, [string]>
+}
+
+export interface ErrorHanlder {
+  removeErrors: BuildRemoveErrorInterface,
+  getErrors: GetErrorInterface,
 }
