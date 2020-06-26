@@ -7,10 +7,14 @@ function getName(completeName: string) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function isProjectInList(list:[string?], folderName = '') {
 =======
 function isProjectInList(list:[string?], folderName: string = '') {
 >>>>>>> Change to ts
+=======
+function isProjectInList(list:[string?], folderName = '') {
+>>>>>>> Linting
   return !list.length || list.includes(getName(folderName));
 }
 

@@ -31,7 +31,11 @@ export function buildNpmInstall(opts: CommandBuilder): Command {
   };
 }
 
+<<<<<<< HEAD
 export function buildCheckoutBranch(opts: CommandBuilder): Command {
+=======
+export function buildNewBranch(opts: CommandBuilder): Command {
+>>>>>>> Linting
   return {
     command: {
       program: 'git',
@@ -41,6 +45,19 @@ export function buildCheckoutBranch(opts: CommandBuilder): Command {
   };
 }
 
+<<<<<<< HEAD
+=======
+export function buildCheckoutBranch(opts: CommandBuilder): Command {
+  return {
+    command: {
+      program: 'git',
+      args: ['checkout', buildBranchName(opts.moduleName, opts.branchName)],
+    },
+    cwd: opts.cwd,
+  };
+}
+
+>>>>>>> Linting
 export function buildUninstallPackage(opts: CommandBuilder): Command {
   return {
     command: {

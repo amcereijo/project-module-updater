@@ -5,10 +5,13 @@ import kleur from 'kleur';
 =======
 
 import { debugName } from '../constants';
+<<<<<<< HEAD
 import Data, {DataResult} from '../data';
 >>>>>>> Change to ts:src/main/index.ts
 
 import { debugName } from '../constants';
+=======
+>>>>>>> Linting
 import Data, { DataResult } from '../data';
 
 import {
@@ -32,6 +35,8 @@ import filterByUserChoice from '../filter-by-user-choice';
 const debugLog = debug(debugName);
 =======
 >>>>>>> Change to ts:src/main/index.ts
+
+const debugLog = debug(debugName);
 
 const {
   removeErrors,
@@ -92,18 +97,21 @@ function maybeRunFilterByUserChoice(selectAll: boolean) {
  *  updateBranchName: String
  * }
  */
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/index.ts
 function main(data: Data): void {
 =======
 async function main(data: Data) {
 >>>>>>> Change to ts:src/main/index.ts
+=======
+function main(data: Data): void {
+>>>>>>> Linting
   console.log(kleur.green('Input data for process:'), data, '\n');
   debugLog('Running in debug mode...');
 
   const selectAll = !!data.projects.length;
 
   const filterProjectInList = filterProjectInListBuilder(data.projects);
-
 
   Promise.resolve(data)
     .then(defineVersionToUpdate)

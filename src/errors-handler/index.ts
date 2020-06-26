@@ -1,19 +1,27 @@
 import Promise from 'bluebird';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Data, { ErrorHanlder } from '../data';
 =======
 import Data from '../data';
 >>>>>>> Change to ts
+=======
+import Data, { ErrorHanlder } from '../data';
+>>>>>>> Linting
 
 /**
  *
  * @returns { removeErrors(errorName: String), getErrors() }
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default function buildErrorsHandler(): ErrorHanlder {
 =======
 export default function buildErrorsHandler() {
 >>>>>>> Change to ts
+=======
+export default function buildErrorsHandler(): ErrorHanlder {
+>>>>>>> Linting
   const errors = new Map();
 
   function removeErrors(name: string) {
@@ -32,10 +40,14 @@ export default function buildErrorsHandler() {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   function getErrors(): Map<string,[string]> {
 =======
   function getErrors(): Object {
 >>>>>>> Change to ts
+=======
+  function getErrors(): Map<string,[string]> {
+>>>>>>> Linting
     return errors;
   }
 

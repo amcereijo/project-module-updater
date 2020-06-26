@@ -1,10 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Promise from 'bluebird';
 import Data from '../data';
 =======
 import Data from "../data";
 import Promise from 'bluebird';
 >>>>>>> Change to ts
+=======
+import Promise from 'bluebird';
+import Data from '../data';
+>>>>>>> Linting
 import {
   runGetModuleVersions,
 } from '../actions/runners';
