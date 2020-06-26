@@ -1,6 +1,12 @@
+<<<<<<< HEAD:src/filter-by-user-choice/index.ts
 import prompts from 'prompts';
 import kleur from 'kleur';
 import Data from '../data';
+=======
+import Data from "../data";
+import prompts from 'prompts';
+import kleur from 'kleur';
+>>>>>>> Change to ts:src/filter-by-user-choice/index.ts
 
 const instructions = kleur.yellow(`
   Instructions:
@@ -14,6 +20,7 @@ function buildChoices(data: [Data]) {
   return data.map((element) => ({ title: element.name, value: [element.name] }));
 }
 
+
 /**
  *
  * @param {Array} data [{
@@ -26,12 +33,17 @@ function buildChoices(data: [Data]) {
     continue: true
  * }]
  */
+<<<<<<< HEAD:src/filter-by-user-choice/index.ts
 export default async function filterByUserChoice(data: [Data]) : Promise<[Data]> {
+=======
+export default async function filterByUserChoice(data: [Data]) : Promise<[Data]>{
+>>>>>>> Change to ts:src/filter-by-user-choice/index.ts
   const choices = buildChoices(data);
 
   if (!choices.length) {
     return data;
   }
+
 
   const response = await prompts({
     type: 'multiselect',

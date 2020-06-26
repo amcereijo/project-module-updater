@@ -3,10 +3,18 @@ import path from 'path';
 import pjson from './package.json';
 import main from './src/main/index';
 import Data from './src/data';
+<<<<<<< HEAD:index.ts
+=======
+
+>>>>>>> Change to ts:index.ts
 
 const DEFAULT_BRANCH = 'dev';
 const DEFAULT_PUSH = false;
 
+<<<<<<< HEAD:index.ts
+=======
+
+>>>>>>> Change to ts:index.ts
 function resolvePathDir(dir:string) {
   return path.resolve(dir);
 }

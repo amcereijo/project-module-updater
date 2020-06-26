@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { StdioOptions } from "child_process";
 import Promise from 'bluebird';
+=======
+>>>>>>> Change to ts
 
 export default interface Data {
   moduleName: string,
@@ -18,6 +21,7 @@ export default interface Data {
 
 export interface ParserFunction {
   (data:Data): string
+<<<<<<< HEAD
 }
 
 export interface Command {
@@ -38,10 +42,24 @@ export interface CommandBuilder {
   moduleVersion?: string,
   commitMessage?: string
 }
+=======
+};
+
+export interface Command {
+  command: {
+    program: 'git',
+    args: [string],
+  },
+  cwd?: string,
+  stdio?: "ignore",
+  stdioParser?: ParserFunction,
+};
+>>>>>>> Change to ts
 
 export interface DataResult {
   success: [Data],
   errors: Map<string, [string]>,
+<<<<<<< HEAD
 }
 
 export interface RemoveErrorInterface {
@@ -59,4 +77,6 @@ export interface GetErrorInterface {
 export interface ErrorHanlder {
   removeErrors: BuildRemoveErrorInterface,
   getErrors: GetErrorInterface,
+=======
+>>>>>>> Change to ts
 }

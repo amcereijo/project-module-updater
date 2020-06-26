@@ -15,6 +15,10 @@
     "pmu": "bin/run",
     "project-module-updater": "bin/run"
   },
+  "files": [
+    "bin",
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },

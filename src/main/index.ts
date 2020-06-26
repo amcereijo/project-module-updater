@@ -1,6 +1,12 @@
 import Promise from 'bluebird';
 import debug from 'debug';
 import kleur from 'kleur';
+<<<<<<< HEAD:src/main/index.ts
+=======
+
+import { debugName } from '../constants';
+import Data, {DataResult} from '../data';
+>>>>>>> Change to ts:src/main/index.ts
 
 import { debugName } from '../constants';
 import Data, { DataResult } from '../data';
@@ -21,8 +27,11 @@ import {
 } from '../utils';
 import defineVersionToUpdate from '../define-version-to-update';
 import filterByUserChoice from '../filter-by-user-choice';
+<<<<<<< HEAD:src/main/index.ts
 
 const debugLog = debug(debugName);
+=======
+>>>>>>> Change to ts:src/main/index.ts
 
 const {
   removeErrors,
@@ -40,11 +49,19 @@ function runActions(data: [Data], pos = 0): Promise<[Data]> {
     .then(removeErrors(actionNames[actualPos]))
     .then((newData) => {
       actualPos += 1;
+<<<<<<< HEAD:src/main/index.ts
 
       if (actions.length) {
         return runActions(newData, actualPos);
       }
 
+=======
+
+      if (actions.length) {
+        return runActions(newData, actualPos);
+      }
+
+>>>>>>> Change to ts:src/main/index.ts
       return newData;
     });
 }
@@ -75,13 +92,18 @@ function maybeRunFilterByUserChoice(selectAll: boolean) {
  *  updateBranchName: String
  * }
  */
+<<<<<<< HEAD:src/main/index.ts
 function main(data: Data): void {
+=======
+async function main(data: Data) {
+>>>>>>> Change to ts:src/main/index.ts
   console.log(kleur.green('Input data for process:'), data, '\n');
   debugLog('Running in debug mode...');
 
   const selectAll = !!data.projects.length;
 
   const filterProjectInList = filterProjectInListBuilder(data.projects);
+
 
   Promise.resolve(data)
     .then(defineVersionToUpdate)
