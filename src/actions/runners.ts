@@ -7,7 +7,6 @@ import {
   buildCheckOut,
   buildPull,
   buildNpmInstall,
-  buildNewBranch,
   buildCheckoutBranch,
   buildUninstallPackage,
   buildInstallPackage,
@@ -34,15 +33,6 @@ function runPull(data: Data): Promise<Data> {
 function runNpmInstall(data: Data): Promise<Data> {
   const npmInstallCommand = buildNpmInstall({ cwd: data.name });
   return runCommand(data, npmInstallCommand, 'runNpmInstall');
-}
-
-function runCreateBranch(data: Data): Promise<Data> {
-  const createBranchCommand = buildNewBranch({
-    cwd: data.name,
-    moduleName: data.moduleName,
-    branchName: data.updateBranchName,
-  });
-  return runCommand(data, createBranchCommand, 'runCreateBranch');
 }
 
 function runCheckoutBranch(data: Data): Promise<Data> {
@@ -124,7 +114,6 @@ const actions = [
   runCheckoutOriginalBranch,
   runPull,
   runNpmInstall,
-  runCreateBranch,
   runCheckoutBranch,
   runUninstallPackage,
   runInstallPackage,
@@ -156,7 +145,6 @@ export {
   runCheckoutOriginalBranch,
   runPull,
   runNpmInstall,
-  runCreateBranch,
   runCheckoutBranch,
   runUninstallPackage,
   runInstallPackage,
