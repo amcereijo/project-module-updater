@@ -26,6 +26,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - name: npm install
       run: npm install
+    - name: version and publish
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
