@@ -29,3 +29,5 @@ jobs:
     - run: git config user.name amcereijo
     - run: npm version prerelease --preid=rc
     - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
