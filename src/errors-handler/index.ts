@@ -10,9 +10,8 @@ export default function buildErrorsHandler(): ErrorHanlder {
 
   function removeErrors(name: string) {
     return (list: [Data]) : Promise<[Data]> => {
-      Object.assign(errors, {
-        [name]: list.filter((el) => !el.continue).map((el) => el.name),
-      });
+      const deleted = list.filter((el) => !el.continue).map((el) => el.name);
+      errors.set(name, deleted);
 
       return <Promise<[Data]>>Promise.filter(list, (el) => el.continue);
     };
