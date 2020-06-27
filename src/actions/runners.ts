@@ -35,18 +35,6 @@ function runNpmInstall(data: Data): Promise<Data> {
   return runCommand(data, npmInstallCommand, 'runNpmInstall');
 }
 
-<<<<<<< HEAD:src/actions/runners.ts
-=======
-function runCreateBranch(data: Data): Promise<Data> {
-  const createBranchCommand = buildNewBranch({
-    cwd: data.name,
-    moduleName: data.moduleName,
-    branchName: data.updateBranchName,
-  });
-  return runCommand(data, createBranchCommand, 'runCreateBranch');
-}
-
->>>>>>> Change to ts:src/actions/runners.ts
 function runCheckoutBranch(data: Data): Promise<Data> {
   const checkoutBranchCommand = buildCheckoutBranch({
     cwd: data.name,
@@ -126,10 +114,6 @@ const actions = [
   runCheckoutOriginalBranch,
   runPull,
   runNpmInstall,
-<<<<<<< HEAD:src/actions/runners.ts
-=======
-  runCreateBranch,
->>>>>>> Change to ts:src/actions/runners.ts
   runCheckoutBranch,
   runUninstallPackage,
   runInstallPackage,
