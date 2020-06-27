@@ -24,9 +24,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
-    - run: npm ci
-    - run: git config user.email amcereijo@gmail.com
-    - run: git config user.name amcereijo
-    - run: npm run build --if-present && npm version prerelease --force --preid=rc && npm publish
+    - name: npm install
+      run: npm install
+      run: |
+        git config user.name $GITHUB_ACTOR
+        git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+        npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+        npm run build --if-present
+        npm version prerelease --preid=rc -m "Version %s"
+        npm publish
+        git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        git push gh-origin HEAD:ts-refactor --tags
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
