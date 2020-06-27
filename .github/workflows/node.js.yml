@@ -25,5 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
+    - run: git config --global user.email amcereijo@gmail.com"
+    - run: git config --global user.name "amcereijo"
     - run: npm version prerelease --preid=rc
     - run: npm publish
