@@ -1,6 +1,6 @@
 {
   "name": "project-module-updater",
-  "version": "1.5.1-rc.1",
+  "version": "1.5.1-rc.2",
   "description": "Automatically update a module in several projects",
   "main": "dist/index.js",
   "scripts": {
