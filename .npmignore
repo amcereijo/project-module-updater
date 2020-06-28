@@ -1,0 +1,4 @@
+./src
+./.github
+*.ts
+tsconfig.json
