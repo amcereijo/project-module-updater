@@ -27,15 +27,7 @@ export function buildSpawnCommand({ command, cwd, stdio = 'ignore' }: Command) :
   });
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD:src/actions/common.ts
 export function buildBranchName(moduleName: string, branchName:string): string {
-=======
-export function buildBranchName(moduleName: string, branchName:string) {
->>>>>>> Change to ts:src/actions/common.ts
-=======
-export function buildBranchName(moduleName: string, branchName:string): string {
->>>>>>> Linting
   return branchName || `fix/update-${moduleName}`;
 }
 export function runCommand(data: Data, command: Command, commandName: string): Promise<Data> {
@@ -43,15 +35,7 @@ export function runCommand(data: Data, command: Command, commandName: string): P
 
   return new Promise((resolve) => {
     const spawnCommand = buildSpawnCommand(command);
-<<<<<<< HEAD
-<<<<<<< HEAD:src/actions/common.ts
     let commandResult = '';
-=======
-    let commandResult: string = '';
->>>>>>> Change to ts:src/actions/common.ts
-=======
-    let commandResult = '';
->>>>>>> Linting
 
     spawnCommand.on('exit', (code, signal) => {
       debugLog(`process ${commandName} for ${data.name} exited with ${code} and ·${signal}. Resolve with`, { continue: code === 0 });

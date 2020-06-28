@@ -1,18 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:src/filter-by-user-choice/index.ts
 import prompts from 'prompts';
 import kleur from 'kleur';
 import Data from '../data';
-=======
-import Data from "../data";
-import prompts from 'prompts';
-import kleur from 'kleur';
->>>>>>> Change to ts:src/filter-by-user-choice/index.ts
-=======
-import prompts from 'prompts';
-import kleur from 'kleur';
-import Data from '../data';
->>>>>>> Linting
 
 const instructions = kleur.yellow(`
   Instructions:
@@ -38,15 +26,7 @@ function buildChoices(data: [Data]) {
     continue: true
  * }]
  */
-<<<<<<< HEAD
-<<<<<<< HEAD:src/filter-by-user-choice/index.ts
 export default async function filterByUserChoice(data: [Data]) : Promise<[Data]> {
-=======
-export default async function filterByUserChoice(data: [Data]) : Promise<[Data]>{
->>>>>>> Change to ts:src/filter-by-user-choice/index.ts
-=======
-export default async function filterByUserChoice(data: [Data]) : Promise<[Data]> {
->>>>>>> Linting
   const choices = buildChoices(data);
 
   if (!choices.length) {
