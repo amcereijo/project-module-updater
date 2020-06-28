@@ -144,6 +144,25 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
 > DEBUG=pmu project-module-updater -b BRANCH --directory DIRECTORY <moduleName>
 ```
 
+### Publishing workflow
+Github actions are used to create and publish new versions.
+#### How to plusih a new version
+* Create a new branch for changes from "master" branch
+* Make changes, commits and event pushing to remote
+* To plublish a new version
+  * pre-release version: just merge to "prerelease" branch
+  * patch version:
+    * merge to "patch" branch, it will generate a patch version but it will be not published to npm
+    * merge from "patch" to "master", it will publish to npm the new version
+  * minor version:
+    * merge to "minor" branch, it will generate a minor version but it will be not published to npm
+    * merge from "minor" to "master", it will publish to npm the new version
+  * major version:
+    * merge to "major" branch, it will generate a major version but it will be not published to npm
+    * merge from "major" to "master", it will publish to npm the new version
+
+
+
 # ToDos
 * Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
@@ -165,3 +184,7 @@ To show all logs, use "pmu" as value for "DEBUG" env var. Example:
   * fix do not wait for client input if there is no project to select
 * *v 1.4.0*:
   * add "pmu" as a command alias for "project-module-updater"
+* *v 1.5.0*:
+  * make create branch and checkout branch in one command
+  * code rewritten in Typescript
+  * use github actions and different branches to generate and publish new versions
