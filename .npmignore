@@ -1,4 +1,4 @@
 ./src
 ./.github
-README.MD
-LICENCE
+*.ts
+tsconfig.json
