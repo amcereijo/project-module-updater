@@ -1,4 +1,3 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
@@ -6,7 +5,7 @@ name: Node.js CI
 on:
   push:
     branches:
-      - ts-refactor
+      - prerelease
 
 jobs:
   build:
@@ -34,7 +33,7 @@ jobs:
         npm version prerelease --preid=rc -m "Version %s"
         npm publish
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        git push gh-origin HEAD:ts-refactor --tags
+        git push gh-origin HEAD:prerelease --tags
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
