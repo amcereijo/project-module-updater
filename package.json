@@ -15,6 +15,11 @@
     "pmu": "bin/run",
     "project-module-updater": "bin/run"
   },
+  "files": [
+    "index.js",
+    "bin",
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
