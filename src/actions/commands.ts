@@ -1,6 +1,7 @@
-const { buildBranchName } = require('./common');
+import { CommandBuilder, Command } from '../data'
+import { buildBranchName } from './common';
 
-function buildCheckOut(opts = {}) {
+export function buildCheckOut(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -10,7 +11,7 @@ function buildCheckOut(opts = {}) {
   };
 }
 
-function buildPull(opts = {}) {
+export function buildPull(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -20,7 +21,7 @@ function buildPull(opts = {}) {
   };
 }
 
-function buildNpmInstall(opts = {}) {
+export function buildNpmInstall(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'npm',
@@ -30,27 +31,17 @@ function buildNpmInstall(opts = {}) {
   };
 }
 
-function buildNewBranch(opts = {}) {
+export function buildCheckoutBranch(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
-      args: ['branch', buildBranchName(opts.moduleName, opts.branchName)],
+      args: ['checkout', '-b', buildBranchName(opts.moduleName, opts.branchName)],
     },
     cwd: opts.cwd,
   };
 }
 
-function buildCheckoutBranch(opts = {}) {
-  return {
-    command: {
-      program: 'git',
-      args: ['checkout', buildBranchName(opts.moduleName, opts.branchName)],
-    },
-    cwd: opts.cwd,
-  };
-}
-
-function buildUninstallPackage(opts = {}) {
+export function buildUninstallPackage(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'npm',
@@ -60,7 +51,7 @@ function buildUninstallPackage(opts = {}) {
   };
 }
 
-function buildInstallPackage(opts = {}) {
+export function buildInstallPackage(opts: CommandBuilder): Command {
   const moduleName = opts.moduleVersion
     ? `${opts.moduleName}@${opts.moduleVersion}`
     : opts.moduleName;
@@ -74,7 +65,7 @@ function buildInstallPackage(opts = {}) {
   };
 }
 
-function buildGitAddChanges(opts = {}) {
+export function buildGitAddChanges(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -84,7 +75,7 @@ function buildGitAddChanges(opts = {}) {
   };
 }
 
-function buildGitCommit(opts = {}) {
+export function buildGitCommit(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -94,7 +85,7 @@ function buildGitCommit(opts = {}) {
   };
 }
 
-function buildMergeBranch(opts = {}) {
+export function buildMergeBranch(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -104,7 +95,7 @@ function buildMergeBranch(opts = {}) {
   };
 }
 
-function buildRemoveBranch(opts = {}) {
+export function buildRemoveBranch(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -114,7 +105,7 @@ function buildRemoveBranch(opts = {}) {
   };
 }
 
-function buildPush(opts = {}) {
+export function buildPush(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'git',
@@ -124,7 +115,7 @@ function buildPush(opts = {}) {
   };
 }
 
-function buildGetVersions(opts = {}) {
+export function buildGetVersions(opts: CommandBuilder): Command {
   return {
     command: {
       program: 'npm',
@@ -132,23 +123,6 @@ function buildGetVersions(opts = {}) {
     },
     cwd: opts.cwd,
     stdio: 'pipe',
-    stdioParser: (_data = []) => JSON.parse(String(_data).replace(/'/g, '"')),
+    stdioParser: (_data) => JSON.parse(String(_data).replace(/'/g, '"')),
   };
 }
-
-
-module.exports = {
-  buildCheckOut,
-  buildPull,
-  buildNpmInstall,
-  buildNewBranch,
-  buildCheckoutBranch,
-  buildUninstallPackage,
-  buildInstallPackage,
-  buildGitAddChanges,
-  buildGitCommit,
-  buildMergeBranch,
-  buildRemoveBranch,
-  buildPush,
-  buildGetVersions,
-};
