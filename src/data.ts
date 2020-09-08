@@ -14,6 +14,7 @@ export default interface Data {
   name?: string,
   continue?: boolean,
   commandResult?: string,
+  isDevDependency?: boolean
 }
 
 export interface ParserFunction {
