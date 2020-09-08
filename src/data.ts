@@ -7,7 +7,7 @@ export default interface Data {
   defaultBranch: string,
   parentDir: string,
   push: boolean,
-  projects:[string],
+  projects: string[],
   message: string,
   updateBranchName: string,
 
