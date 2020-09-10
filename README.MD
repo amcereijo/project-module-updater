@@ -64,9 +64,14 @@ or
 > npm i
 ```
 
+Build project
+```
+> npm run build
+```
+
 To see command options
 ```
-> node index.js --help
+> node dist/index.js --help
 ```
 Output:
 ```
@@ -85,10 +90,10 @@ Options:
 
 Example to run:
 ```
-> node index.js -b BRANCH --directory DIRECTORY <moduleName>
+> node dist/ndex.js -b BRANCH --directory DIRECTORY <moduleName>
 ```
 ```
-> node index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
+> node dist/index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
 ```
 
 ## Expected process output
