@@ -164,7 +164,6 @@ Github actions are used to create and publish new versions.
 
 
 # ToDos
-* Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
 
@@ -188,3 +187,5 @@ Github actions are used to create and publish new versions.
   * make create branch and checkout branch in one command
   * code rewritten in Typescript
   * use github actions and different branches to generate and publish new versions
+* *v1.5.0*:
+  * auto install module in "dependencies" or "devDependency"

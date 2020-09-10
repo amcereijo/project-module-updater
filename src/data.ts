@@ -37,7 +37,8 @@ export interface CommandBuilder {
   moduleName?: string,
   branchName?: string,
   moduleVersion?: string,
-  commitMessage?: string
+  commitMessage?: string,
+  isDevDependency?: boolean
 }
 
 export interface DataResult {
