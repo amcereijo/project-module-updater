@@ -7,13 +7,14 @@ export default interface Data {
   defaultBranch: string,
   parentDir: string,
   push: boolean,
-  projects:[string],
+  projects: string[],
   message: string,
   updateBranchName: string,
 
   name?: string,
   continue?: boolean,
   commandResult?: string,
+  isDevDependency?: boolean
 }
 
 export interface ParserFunction {
@@ -36,7 +37,8 @@ export interface CommandBuilder {
   moduleName?: string,
   branchName?: string,
   moduleVersion?: string,
-  commitMessage?: string
+  commitMessage?: string,
+  isDevDependency?: boolean
 }
 
 export interface DataResult {

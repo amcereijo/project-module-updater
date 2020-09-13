@@ -54,6 +54,7 @@ function runInstallPackage(data: Data): Promise<Data> {
     cwd: data.name,
     moduleName: data.moduleName,
     moduleVersion: data.moduleVersion,
+    isDevDependency: data.isDevDependency || false,
   });
   return runCommand(data, installCommand, 'runInstallPackage');
 }

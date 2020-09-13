@@ -6,11 +6,11 @@ function getName(completeName: string) {
   return path.parse(completeName).name;
 }
 
-function isProjectInList(list:[string?], folderName = '') {
+function isProjectInList(list: string[], folderName = '') {
   return !list.length || list.includes(getName(folderName));
 }
 
-export default function filterProjectsInList(allowedProjects: [string?] = []) {
+export default function filterProjectsInList(allowedProjects: string[] = []) {
   return (data: [Data]) : Promise<[Data]> => <Promise<[Data]>>Promise.resolve(data)
     .map((_data: Data) => Promise.props({
       ..._data,

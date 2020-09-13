@@ -64,9 +64,14 @@ or
 > npm i
 ```
 
+Build project
+```
+> npm run build
+```
+
 To see command options
 ```
-> node index.js --help
+> node dist/index.js --help
 ```
 Output:
 ```
@@ -85,10 +90,10 @@ Options:
 
 Example to run:
 ```
-> node index.js -b BRANCH --directory DIRECTORY <moduleName>
+> node dist/ndex.js -b BRANCH --directory DIRECTORY <moduleName>
 ```
 ```
-> node index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
+> node dist/index.js -b BRANCH --directory DIRECTORY <moduleName@1.0.0>
 ```
 
 ## Expected process output
@@ -164,7 +169,6 @@ Github actions are used to create and publish new versions.
 
 
 # ToDos
-* Allow select "dependencies" or "devDependency" (o be smart and install where it was)
 * Make all test to ensure future development and refactors(code was driven by fail-success)
 * Add a max time for commands to end
 
@@ -188,3 +192,5 @@ Github actions are used to create and publish new versions.
   * make create branch and checkout branch in one command
   * code rewritten in Typescript
   * use github actions and different branches to generate and publish new versions
+* *v1.5.0*:
+  * auto install module in "dependencies" or "devDependency"
