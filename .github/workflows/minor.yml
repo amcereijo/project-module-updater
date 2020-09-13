@@ -33,7 +33,6 @@ jobs:
         npm version minor -m "Version %s"
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:minor --tags
-        git checkout master && git fetch origin minor && git rebase origin/minor
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,3 +42,12 @@ jobs:
         npm publish
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Rebase master on patch
+      # Recommended: specify a version such as `@v1.0` rather than `@main`
+      uses: DeeDeeG/rebase-github-action@main
+      with:
+        # Head branch, which will be rebased onto the base_ref.
+        head_branch: master
+        # Branch, or Git ref, that the head_branch will be rebased onto.
+        base_ref: origin/minor
