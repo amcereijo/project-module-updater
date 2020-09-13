@@ -41,11 +41,11 @@ jobs:
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm publish
     - name: Update master
-    - uses: Embraser01/update-git-branch-action@v1.0.0
-      if: github.ref == 'refs/heads/patch'
-      with:
-        branch: master
-        force: 1 # To push-force to the branch
-        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: Embraser01/update-git-branch-action@v1.0.0
+        if: github.ref == 'refs/heads/patch'
+        with:
+          branch: master
+          force: 1 # To push-force to the branch
+          githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
