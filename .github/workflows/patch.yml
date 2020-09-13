@@ -39,11 +39,10 @@ jobs:
 
 
     - name: Rebase master on patch
-      run: |
-        git config user.name $GITHUB_ACTOR
-        git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-        git checkout -b master origin/master
-        git fetch origin patch
-        git rebase origin/patch
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Recommended: specify a version such as `@v1.0` rather than `@main`
+      uses: DeeDeeG/rebase-github-action@main
+      with:
+        # Head branch, which will be rebased onto the base_ref.
+        head_branch: HEAD:master
+        # Branch, or Git ref, that the head_branch will be rebased onto.
+        base_ref: HEAD:patch
