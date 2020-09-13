@@ -192,5 +192,5 @@ Github actions are used to create and publish new versions.
   * make create branch and checkout branch in one command
   * code rewritten in Typescript
   * use github actions and different branches to generate and publish new versions
-* *v1.5.0*:
+* *v1.6.x*:
   * auto install module in "dependencies" or "devDependency"

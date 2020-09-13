@@ -33,7 +33,6 @@ jobs:
         npm version patch -m "Version %s"
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:patch --tags
-        git checkout master && git fetch origin patch && git rebase origin/patch
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,5 +40,12 @@ jobs:
       run: |
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm publish
+    - name: Update master
+    - uses: Embraser01/update-git-branch-action@v1.0.0
+      if: github.ref == 'refs/heads/patch'
+      with:
+        branch: master
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
