@@ -44,8 +44,8 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Update master
       uses: Embraser01/update-git-branch-action@v1.0.0
-        if: github.ref == 'refs/heads/patch'
-        with:
-          branch: master
-          force: 1 # To push-force to the branch
-          githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+      if: github.ref == 'refs/heads/patch'
+      with:
+        branch: master
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
