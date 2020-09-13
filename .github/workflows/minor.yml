@@ -33,6 +33,7 @@ jobs:
         npm version minor -m "Version %s"
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:minor --tags
+        git checkout master && git fetch origin minor && git rebase origin/minor
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
