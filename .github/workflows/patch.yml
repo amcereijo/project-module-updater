@@ -42,10 +42,15 @@ jobs:
         npm publish
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Update master
-      uses: Embraser01/update-git-branch-action@v1.0.0
-      if: github.ref == 'refs/heads/patch'
-      with:
-        branch: master
-        force: 1 # To push-force to the branch
-        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+
+  rebase_branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rebase master on patch
+        # Recommended: specify a version such as `@v1.0` rather than `@main`
+        uses: DeeDeeG/rebase-github-action@main
+        with:
+          # Head branch, which will be rebased onto the base_ref.
+          head_branch: master
+          # Branch, or Git ref, that the head_branch will be rebased onto.
+          base_ref: patch
