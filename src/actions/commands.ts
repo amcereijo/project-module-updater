@@ -55,11 +55,12 @@ export function buildInstallPackage(opts: CommandBuilder): Command {
   const moduleName = opts.moduleVersion
     ? `${opts.moduleName}@${opts.moduleVersion}`
     : opts.moduleName;
+  const saveOption = opts.isDevDependency ? '--save-dev' : '-S';
 
   return {
     command: {
       program: 'npm',
-      args: ['i', '-S', moduleName],
+      args: ['i', saveOption, moduleName],
     },
     cwd: opts.cwd,
   };
