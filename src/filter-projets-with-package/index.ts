@@ -7,15 +7,11 @@ async function buildModuleInfo(data: Data) {
     hasModule,
     isDevDependency
   } = await getModuleInfoFromPackage(data);
-
-  return { continue: hasModule, isDevDependency};
+  return { ...data, continue: hasModule, isDevDependency};
 }
 
 export default function filterProjectsWithPackage(data: [Data]): Promise<[Data]> {
   return <Promise<[Data]>>Promise.resolve(data)
-    .map((_data) => Promise.props({
-      ..._data,
-      ...buildModuleInfo(_data),
-    }))
+    .map((_data) => buildModuleInfo(_data))
     .filter((_data) => Boolean(_data.continue));
 }
