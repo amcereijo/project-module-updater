@@ -42,8 +42,8 @@ jobs:
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-        git checkout origin/master
-        git fetch
+        git checkout -b master origin/master
+        git fetch origin patch
         git rebase origin/patch
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
