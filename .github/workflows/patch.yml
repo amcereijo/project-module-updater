@@ -33,6 +33,7 @@ jobs:
         npm version patch -m "Version %s"
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:patch --tags
+        git fetch origin master patch
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,8 +42,6 @@ jobs:
     - name: Rebase master on patch
       # Recommended: specify a version such as `@v1.0` rather than `@main`
       uses: DeeDeeG/rebase-github-action@main
-      run: |
-        git fetch origin master patch
       with:
         # Head branch, which will be rebased onto the base_ref.
         head_branch: origin/master
