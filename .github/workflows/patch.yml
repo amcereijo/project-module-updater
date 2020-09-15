@@ -36,8 +36,8 @@ jobs:
         git remote update
         git checkout master
         git pull
-        git fetch origin patch
-        git merge origin/patch
+        git fetch patch
+        git merge patch
         git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
