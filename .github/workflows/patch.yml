@@ -34,7 +34,7 @@ jobs:
         git push origin HEAD:patch --tags
         git fetch
         git remote update
-        git branch --set-upstream-to=origin/origin master
+        git branch --set-upstream-to=origin/master master
         git checkout master
         git pull
         git fetch origin patch
