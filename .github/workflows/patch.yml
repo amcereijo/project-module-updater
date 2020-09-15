@@ -32,18 +32,10 @@ jobs:
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm version patch -m "Version %s"
         git push origin HEAD:patch --tags
+        git checkout master
+        git pull
+        git rebase origin/patch
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-    - name: Rebase master on patch
-      # Recommended: specify a version such as `@v1.0` rather than `@main`
-      uses: DeeDeeG/rebase-github-action@main
-      with:
-        # Head branch, which will be rebased onto the base_ref.
-        head_branch: origin/master
-        # Branch, or Git ref, that the head_branch will be rebased onto.
-        base_ref: origin/patch
-      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
