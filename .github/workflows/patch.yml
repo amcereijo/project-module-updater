@@ -35,9 +35,10 @@ jobs:
         git fetch
         git remote update
         git checkout -b master
+        git pull
         git fetch origin patch
         git merge --allow-unrelated-histories origin/patch
-        git push --set-upstream origin master
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
