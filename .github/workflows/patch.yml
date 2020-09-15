@@ -37,7 +37,7 @@ jobs:
         git checkout master
         git pull
         git fetch origin patch
-        git merge patch
+        git merge --allow-unrelated-histories patch
         git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
