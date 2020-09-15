@@ -34,7 +34,7 @@ jobs:
         git push origin HEAD:patch --tags
         git fetch
         git remote update
-        git checkout master
+        git checkout -b master
         git pull
         git fetch origin patch
         git merge --allow-unrelated-histories origin/patch
