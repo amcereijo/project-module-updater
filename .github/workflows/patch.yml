@@ -45,4 +45,4 @@ jobs:
         # Head branch, which will be rebased onto the base_ref.
         head_branch: gh-origin/master
         # Branch, or Git ref, that the head_branch will be rebased onto.
-        base_ref: gh-origin/patch
+        base_ref: HEAD:patch
