@@ -31,10 +31,14 @@ jobs:
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm version patch -m "Version %s"
-        git push origin HEAD:patch --tags
+        git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        git push gh-origin HEAD:patch --tags
+        git fetch
+        git remote update
         git checkout master
         git pull
-        git rebase origin/patch
+        git fetch gh-origin patch
+        git rebase gh-origin/patch
         git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
