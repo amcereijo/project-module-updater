@@ -29,10 +29,17 @@ jobs:
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+        git config pull.rebase true
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm version major -m "Version %s"
-        git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:major --tags
+        git fetch
+        git remote update
+        git checkout master
+        git pull
+        git fetch origin major
+        git merge --allow-unrelated-histories major
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,12 +49,3 @@ jobs:
         npm publish
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Rebase master on patch
-      # Recommended: specify a version such as `@v1.0` rather than `@main`
-      uses: DeeDeeG/rebase-github-action@main
-      with:
-        # Head branch, which will be rebased onto the base_ref.
-        head_branch: origin/master
-        # Branch, or Git ref, that the head_branch will be rebased onto.
-        base_ref: origin/major

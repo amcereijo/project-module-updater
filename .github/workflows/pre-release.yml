@@ -25,15 +25,21 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - name: npm install
       run: npm ci
-    - name: version and publish
+    - name: version
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+        git config pull.rebase true
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm version prerelease --preid=rc -m "Version %s"
-        npm publish
-        git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:prerelease --tags
+        git fetch
+        git remote update
+        git checkout master
+        git pull
+        git fetch origin prerelease
+        git merge --allow-unrelated-histories major
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,12 +49,3 @@ jobs:
         npm publish
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Rebase master on patch
-      # Recommended: specify a version such as `@v1.0` rather than `@main`
-      uses: DeeDeeG/rebase-github-action@main
-      with:
-        # Head branch, which will be rebased onto the base_ref.
-        head_branch: origin/master
-        # Branch, or Git ref, that the head_branch will be rebased onto.
-        base_ref: origin/pre-release
