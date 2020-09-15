@@ -33,7 +33,7 @@ jobs:
         npm version patch -m "Version %s"
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git push gh-origin HEAD:patch --tags
-        git checkout master
+        git checkout origin/master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
