@@ -41,6 +41,8 @@ jobs:
     - name: Rebase master on patch
       # Recommended: specify a version such as `@v1.0` rather than `@main`
       uses: DeeDeeG/rebase-github-action@main
+      run: |
+        git fetch origin master patch
       with:
         # Head branch, which will be rebased onto the base_ref.
         head_branch: origin/master
