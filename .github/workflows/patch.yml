@@ -43,6 +43,8 @@ jobs:
       uses: DeeDeeG/rebase-github-action@main
       with:
         # Head branch, which will be rebased onto the base_ref.
-        head_branch: gh-origin/master
+        head_branch: origin/master
         # Branch, or Git ref, that the head_branch will be rebased onto.
-        base_ref: HEAD:patch
+        base_ref: origin/patch
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
