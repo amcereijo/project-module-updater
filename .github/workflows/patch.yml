@@ -34,11 +34,12 @@ jobs:
         git push origin HEAD:patch --tags
         git fetch
         git remote update
-        git checkout -b master
+        git branch --set-upstream-to=origin/origin master
+        git checkout master
         git pull
         git fetch origin patch
         git merge --allow-unrelated-histories origin/patch
-        git push --set-upstream origin master
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
