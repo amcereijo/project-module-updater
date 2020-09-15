@@ -34,7 +34,6 @@ Sem version for the module can be specified when pass the name for the pacakge t
 
 # Limitations
 * Only one module per execution can be update.
-* The dependency will by installed in "dependencies" group
 
 # Usage
 ## From npm
