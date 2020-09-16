@@ -36,7 +36,6 @@ jobs:
         git remote update
         git checkout -b master
         git branch --set-upstream-to=origin/master master
-        git pull
         git merge --strategy-option theirs origin/patch
         git push
       env:
