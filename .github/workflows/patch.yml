@@ -32,8 +32,12 @@ jobs:
         git config pull.rebase true
         npm version patch -m "Version %s"
         git push origin HEAD:patch --tags
+        git fetch
+        git remote update
+        git checkout -b master
+        git branch --set-upstream-to=origin/master master
         git pull
-        git push origin HEAD:master
+        git push
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
