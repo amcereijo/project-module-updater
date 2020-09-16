@@ -31,7 +31,8 @@ jobs:
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         git config pull.rebase true
         npm version patch -m "Version %s"
-        git add . commit -m 'Update version'
+        git add .
+        git commit -m 'Update version'
         git push origin HEAD:patch --tags
         git fetch
         git remote update
