@@ -31,13 +31,15 @@ jobs:
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         git config pull.rebase true
         npm version patch -m "Version %s"
+        git add . commit -m 'Update version'
         git push origin HEAD:patch --tags
         git fetch
         git remote update
         git checkout -b master
         git branch --set-upstream-to=origin/master master
-        git merge --strategy-option theirs origin/patch
-        git push
+        git pull
+        git merge --strategy-option theirs patch
+        git push --force
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
