@@ -33,11 +33,9 @@ jobs:
         npm version patch -m "Version %s"
         git push origin HEAD:patch --tags
         git remote update
-        git checkout -b master
-        git branch --set-upstream-to=origin/master master
+        git fetch
         git checkout master
-        git pull
-        git merge --strategy-option theirs patch
+        git merge --allow-unrelated-histories --strategy-option theirs patch
         git push --force origin master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
