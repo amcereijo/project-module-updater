@@ -30,16 +30,13 @@ jobs:
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         git config pull.rebase true
-        npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
         npm version minor -m "Version %s"
-        git push gh-origin HEAD:minor --tags
-        git fetch
+        git push origin HEAD:minor --tags
         git remote update
+        git fetch
         git checkout master
-        git pull
-        git fetch origin minor
-        git merge --allow-unrelated-histories minor
-        git push
+        git merge --allow-unrelated-histories --strategy-option theirs minor
+        git push --force origin master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
