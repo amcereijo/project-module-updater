@@ -35,7 +35,7 @@ jobs:
         git remote update
         git fetch
         git checkout master
-        git merge --strategy-option theirs patch
+        git merge --allow-unrelated-histories --strategy-option theirs patch
         git push --force origin master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
