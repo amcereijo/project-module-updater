@@ -32,6 +32,7 @@ jobs:
         git config pull.rebase true
         npm version patch -m "Version %s"
         git push origin HEAD:patch --tags
+        git pull
         git push origin HEAD:master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
