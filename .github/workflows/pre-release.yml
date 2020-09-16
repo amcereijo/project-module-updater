@@ -30,16 +30,13 @@ jobs:
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         git config pull.rebase true
-        npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-        npm version prerelease --preid=rc -m "Version %s"
-        git push gh-origin HEAD:prerelease --tags
-        git fetch
+        npm version prerelease -m "Version %s"
+        git push origin HEAD:prerelease --tags
         git remote update
+        git fetch
         git checkout master
-        git pull
-        git fetch origin prerelease
-        git merge --allow-unrelated-histories major
-        git push
+        git merge --allow-unrelated-histories --strategy-option theirs prerelease
+        git push --force origin master
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
