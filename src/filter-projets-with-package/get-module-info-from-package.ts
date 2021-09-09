@@ -15,7 +15,7 @@ export default async function hasModuleNameInPackage(data: Data): Promise<{hasMo
       || jsonData.devDependencies[data.moduleName];
 
     const hasModule = !!(version &&
-      getCleanVersion(String(version)) === data.moduleVersion);
+      getCleanVersion(String(version)) !== data.moduleVersion);
     const isDevDependency = !!jsonData.devDependencies[data.moduleName];
 
     return {
