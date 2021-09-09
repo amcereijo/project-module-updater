@@ -21,14 +21,9 @@ describe('define-version-to-update', () => {
     const data = {
       ...baseData,
       moduleName: 'bluebird',
+      moduleVersion: '100.0.0',
     };
 
-    before(async () => {
-      const fileContent = await fs.readFile(`${data.name}/package.json`);
-      const json = JSON.parse(String(fileContent));
-      const version = <string>json.dependencies[data.moduleName];
-      data.moduleVersion = version.replace('^', '').replace('~', '').replace('*', '');
-    });
 
     it('should return true', async () => {
       console.time('test');
@@ -43,14 +38,8 @@ describe('define-version-to-update', () => {
     const data = {
       ...baseData,
       moduleName: 'mocha',
+      moduleVersion: '100.0.0'
     };
-
-    before(async () => {
-      const fileContent = await fs.readFile(`${data.name}/package.json`);
-      const json = JSON.parse(String(fileContent));
-      const version = <string>json.devDependencies[data.moduleName];
-      data.moduleVersion = version.replace('^', '').replace('~', '').replace('*', '');
-    });
 
     it('should return true', async () => {
       console.time('test');
