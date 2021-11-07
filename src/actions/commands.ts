@@ -124,6 +124,6 @@ export function buildGetVersions(opts: CommandBuilder): Command {
     },
     cwd: opts.cwd,
     stdio: 'pipe',
-    stdioParser: (_data) => JSON.parse(String(_data).replace(/'/g, '"')),
+    stdioParser: (_data: string) => JSON.parse(_data.replace(/'/g, '"')),
   };
 }

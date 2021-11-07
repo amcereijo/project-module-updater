@@ -18,7 +18,7 @@ export default interface Data {
 }
 
 export interface ParserFunction {
-  (data:Data): string
+  (data:string|Data): string
 }
 
 export interface Command {

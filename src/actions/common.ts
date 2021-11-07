@@ -30,15 +30,18 @@ export function buildSpawnCommand({ command, cwd, stdio = 'ignore' }: Command) :
 export function buildBranchName(moduleName: string, branchName:string): string {
   return branchName || `fix/update-${moduleName}`;
 }
+
 export function runCommand(data: Data, command: Command, commandName: string): Promise<Data> {
-  debugLog(data.name, commandName, command);
+  const currentFolder = data.name || '';
+  debugLog(currentFolder, commandName, command);
 
   return new Promise((resolve) => {
     const spawnCommand = buildSpawnCommand(command);
     let commandResult = '';
+    let commandData = '';
 
     spawnCommand.on('exit', (code, signal) => {
-      debugLog(`process ${commandName} for ${data.name} exited with ${code} and ·${signal}. Resolve with`, { continue: code === 0 });
+      debugLog(`process ${commandName} for "${currentFolder}" exited with ${code} and ·${signal}. Resolve with`, { continue: code === 0 });
       resolve({ ...data, continue: code === 0, commandResult });
     });
 
@@ -46,12 +49,15 @@ export function runCommand(data: Data, command: Command, commandName: string): P
       const parser: ParserFunction = command.stdioParser || defaultStdioParser;
 
       spawnCommand.stdout.on('data', (_data) => {
-        commandResult = parser(_data);
+        commandData += new String(_data);
+      });
+      spawnCommand.stdout.on('end', () => {
+        commandResult = parser(commandData);
       });
     }
 
     spawnCommand.on('error', (err) => {
-      debugLog(`${commandName} error for ${data.name}`, err, '. Resolve with', { continue: false });
+      debugLog(`${commandName} error for ${currentFolder}`, err, '. Resolve with', { continue: false });
       resolve({ ...data, continue: false });
     });
   });
